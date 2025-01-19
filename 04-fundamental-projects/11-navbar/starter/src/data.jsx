@@ -25,7 +25,7 @@ export const links = [
     url: '/profile',
     text: 'profile',
   },
-];
+]
 
 export const social = [
   {

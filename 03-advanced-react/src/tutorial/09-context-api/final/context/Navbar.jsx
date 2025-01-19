@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { useState } from 'react';
 import NavLinks from './NavLinks';
 
-export const NavbarContext = createContext();
+const NavbarContext = createContext();
 // returns two components
 // Provider - wrap return in Parent Component
 // Consumer - replaced by useContext() hook

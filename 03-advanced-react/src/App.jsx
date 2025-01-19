@@ -1,4 +1,4 @@
-import Stuff from './tutorial/02-useEffect/starter/04-fetch-data'
+import Stuff from './tutorial/08-custom-hooks/starter/02-fetch-data'
 function App() {
   return (
     <div className='container'>

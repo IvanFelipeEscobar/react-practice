@@ -1,5 +1,4 @@
-import { useContext } from 'react';
-import { NavbarContext } from './Navbar';
+
 import { useAppContext } from './Navbar';
 const UserContainer = () => {
   const { user, logout } = useAppContext();
