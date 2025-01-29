@@ -1,4 +1,14 @@
+import Home from './home'
+import Modal from './modal'
+import Sidebar from './sidebar'
+
 const App = () => {
-  return <h2>Strapi Starter</h2>;
-};
-export default App;
+  return (
+    <>
+      <Home />
+      <Modal />
+      <Sidebar />
+    </>
+  )
+}
+export default App
