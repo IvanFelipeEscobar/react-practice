@@ -7,7 +7,6 @@ import {
   LOADING,
   DISPLAY_ITEMS,
 } from './actions'
-import cartItems from './data'
 import reducer from './reducer'
 import { getTotals } from './utils'
 const url = 'https://www.course-api.com/react-useReducer-cart-project'

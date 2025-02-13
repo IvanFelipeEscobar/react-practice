@@ -1,10 +1,14 @@
+import { useEditTask, useDeleteTask } from './customHooks'
+
 const SingleItem = ({ item }) => {
+  const { changeTask } = useEditTask()
+  const { deleteTask, isLoading } = useDeleteTask()
   return (
-    <div className='single-item'>
+    <div className="single-item">
       <input
-        type='checkbox'
+        type="checkbox"
         checked={item.isDone}
-        onChange={() => console.log('edit task')}
+        onChange={() => changeTask({ taskId: item.id, isDone: !item.isDone })}
       />
       <p
         style={{
@@ -15,13 +19,14 @@ const SingleItem = ({ item }) => {
         {item.title}
       </p>
       <button
-        className='btn remove-btn'
-        type='button'
-        onClick={() => console.log('delete task')}
+        className="btn remove-btn"
+        type="button"
+        onClick={() => deleteTask(item.id)}
+        disabled={isLoading}
       >
         delete
       </button>
     </div>
-  );
-};
-export default SingleItem;
+  )
+}
+export default SingleItem
