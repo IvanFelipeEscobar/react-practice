@@ -68,13 +68,13 @@ html {
   --dark-mode-transition: color 0.5s ease-in-out,
     background-color 0.5s ease-in-out;
 }
-
+/* 
 @media (prefers-color-scheme: dark){
   :root {  
     --background-color: var(--dark-mode-bg-color);
     --text-color: var(--dark-mode-text-color);
   }
-}
+} */
 
 .dark-theme {
   --background-color: var(--dark-mode-bg-color);
