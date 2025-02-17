@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+@plugin "daisyui" {
+     themes: light --default, dark --prefersdark, fantasy;
+}
+
+.align-element {
+  @apply mx-auto max-w-6xl px-8;
+}
