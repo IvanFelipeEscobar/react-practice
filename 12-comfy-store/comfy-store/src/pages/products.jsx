@@ -5,9 +5,9 @@ import ProductsContainer from '../components/products-container'
 import { customFetch } from '../utils'
 
 export const loader = async ({request}) => {
-  console.log(request)
-  const { data } = await customFetch('/products')
-  return { products: data.data, meta: data.meta}
+  const params = Object.fromEntries([...new URL(request.url).searchParams.entries()])
+  const { data } = await customFetch('/products', {params})
+  return { products: data.data, meta: data.meta, params}
 }
 
 const Products = () => {
