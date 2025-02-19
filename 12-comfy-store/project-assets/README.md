@@ -1120,7 +1120,7 @@ const Hero = () => {
             <div key={image} className='carousel-item'>
               <img
                 src={image}
-                className='rounded-box h-full w-80  object-cover'
+                className='rounded-box h-full w-full object-cover'
               />
             </div>
           );
