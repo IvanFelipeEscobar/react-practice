@@ -3019,7 +3019,7 @@ const cartSlice = createSlice({
       state.cartTotal += item.price * (amount - item.amount);
       item.amount = amount;
       cartSlice.caseReducers.calculateTotals(state);
-      toast.success('Cart updated');
+      toast.success('Cart succesfully updated');
     },
 
     calculateTotals: (state) => {
