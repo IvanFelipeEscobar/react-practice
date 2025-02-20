@@ -2,28 +2,14 @@ import { BsCart3, BsSunFill, BsMoonFill } from 'react-icons/bs'
 import { FaBarsStaggered } from 'react-icons/fa6'
 import { NavLink } from 'react-router'
 import NavLinks from './nav-links'
-import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-
-const themes = {
-  fantasy: 'fantasy',
-  dark: 'dark',
-}
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleTheme } from '../features/user-slice'
 
 const Navbar = () => {
-  const [theme, setTheme] = useState(
-    localStorage.getItem('theme') || themes.fantasy
-  )
+  const dispatch = useDispatch()
   const handleTheme = () => {
-    const { fantasy, dark } = themes
-    const newTheme = theme === fantasy ? dark : fantasy
-    setTheme(newTheme)
+    dispatch(toggleTheme())
   }
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    localStorage.setItem('theme', theme)
-  }, [theme])
-
   const numItemsInCart = useSelector((state) => state.cartState.numItemsInCart)
   return (
     <nav className="bg-base-200">

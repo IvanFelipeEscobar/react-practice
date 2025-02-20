@@ -93,7 +93,7 @@ const SingleProduct = () => {
               value={amount}
               onChange={(e) => setAmount(parseInt(e.target.value))}
             >
-              {generateAmountOptions(5)}
+              {generateAmountOptions(15)}
             </select>
           </div>
           <div className="mt-10 ">

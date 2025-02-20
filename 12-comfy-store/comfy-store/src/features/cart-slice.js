@@ -35,6 +35,7 @@ const cartSlice = createSlice({
       const { cartId } = payload
       const product = state.cartItems.find((item) => item.cartId === cartId)
       state.cartItems = state.cartItems.filter((item) => item.cartId !== cartId)
+      
       state.numItemsInCart -= product.amount
       state.cartTotal -= product.price * product.amount
       cartSlice.caseReducers.calculateTotals(state)
@@ -57,5 +58,5 @@ const cartSlice = createSlice({
   },
 })
 
-export const { addItem } = cartSlice.actions
+export const { addItem, clearCart, removeItem, editItem } = cartSlice.actions
 export default cartSlice.reducer
