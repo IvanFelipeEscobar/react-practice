@@ -23,7 +23,7 @@ const Navbar = () => {
           </NavLink>
 
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <label tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <FaBarsStaggered className="h-6 w-6" />
             </label>
             <ul

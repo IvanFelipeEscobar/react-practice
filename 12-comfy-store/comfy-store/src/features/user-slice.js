@@ -1,9 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify'
 
 const themes = {
   fantasy: 'fantasy',
   dark: 'dark',
 }
+const getUserFromLocalStorage = () =>
+  JSON.parse(localStorage.getItem('user')) || null
 
 const getThemeFromLocalStoarge = () => {
   const theme = localStorage.getItem('theme') || themes.fantasy
@@ -12,26 +15,28 @@ const getThemeFromLocalStoarge = () => {
 }
 
 const initialState = {
-  user: { username: 'feli' },
-  theme: 'fantasy',
+  user: getUserFromLocalStorage(),
+  theme: getThemeFromLocalStoarge(),
 }
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
     loginUser: (state, action) => {
-      console.log('login', state, action)
+      const user = { ...action.payload.user, token: action.payload.jwt }
+      state.user = user
+      localStorage.setItem('user', JSON.stringify(user))
     },
     logoutUser: (state) => {
-      console.log('logout', state)
+      state.user = null
+      localStorage.removeItem('user')
+      toast.success('Logout Succesful!')
     },
     toggleTheme: (state) => {
-      console.log('theme toggled', state)
       const { fantasy, dark } = themes
       state.theme = state.theme === fantasy ? dark : fantasy
       document.documentElement.setAttribute('data-theme', state.theme)
-    localStorage.setItem('theme', state.theme)
-
+      localStorage.setItem('theme', state.theme)
     },
   },
 })
