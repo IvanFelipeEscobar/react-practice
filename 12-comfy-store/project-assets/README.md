@@ -4195,7 +4195,7 @@ import FormInput from './FormInput';
 import SubmitBtn from './SubmitBtn';
 import { customFetch, formatPrice } from '../utils';
 import { toast } from 'react-toastify';
-import { clearCart } from '../features/cart/cartSlice';
+import { clearCart } from '';
 
 export const action =
   (store) =>

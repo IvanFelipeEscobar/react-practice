@@ -3,7 +3,7 @@ import FormInput from './form-input'
 import SubmitBtn from './submit-btn'
 import { customFetch, formatPrice } from '../utils'
 import { toast } from 'react-toastify'
-import { clearCart } from '../features/cart/cartSlice'
+import { clearCart } from '../features/cart-slice'
 
 export const action =
   (store) =>
@@ -25,7 +25,9 @@ export const action =
         '/orders',
         { data: info },
         {
-          headers: `Bearer ${user.token}`,
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
         }
       )
       store.dispatch(clearCart())
