@@ -4,13 +4,18 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addItem } from '../features/cart-slice'
 
-export const loader = async ({ params }) => {
-  const { data } = await customFetch(`/products/${params.id}`)
-  return { product: data.data }
-}
+export const loader =
+  (queryClient) =>
+  async ({ params }) => {
+    const { data } = await queryClient.ensureQueryData({
+      queryKey: ['singlePrroduct', params.id],
+      queryFn: () => customFetch(`/products/${params.id}`),
+    })
+
+    return { product: data.data }
+  }
 
 const SingleProduct = () => {
-
   const { product } = useLoaderData()
   const { image, title, price, description, colors, company } =
     product.attributes
@@ -28,11 +33,11 @@ const SingleProduct = () => {
     price,
     amount,
     productColor,
-    company
+    company,
   }
 
   const addToCart = () => {
-    dispatch(addItem({product: cartProduct}))
+    dispatch(addItem({ product: cartProduct }))
   }
 
   return (
@@ -70,7 +75,7 @@ const SingleProduct = () => {
               {colors.map((color) => (
                 <button
                   key={color}
-                  type='button'
+                  type="button"
                   className={`badge w-6 h-6 mr-2 ${
                     color === productColor && 'border-2 border-info'
                   }`}
@@ -82,14 +87,14 @@ const SingleProduct = () => {
           </div>
 
           <div className="form-control w-full max-w-xs">
-            <label className="label" htmlFor='amount'>
+            <label className="label" htmlFor="amount">
               <h4 className="text-md font-medium tracking-wider capitalize my-2">
                 amount
               </h4>
             </label>
             <select
               className="select select-secondary select-bordered select-md"
-              id='amount'
+              id="amount"
               value={amount}
               onChange={(e) => setAmount(parseInt(e.target.value))}
             >
@@ -97,10 +102,7 @@ const SingleProduct = () => {
             </select>
           </div>
           <div className="mt-10 ">
-            <button
-              className="btn btn-secondary btn-md"
-              onClick={addToCart}
-            >
+            <button className="btn btn-secondary btn-md" onClick={addToCart}>
               Add to cart
             </button>
           </div>
