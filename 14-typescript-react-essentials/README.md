@@ -89,6 +89,7 @@ function Component({ name, id }: ComponentProps) {
     <div>
       <h1>Name : {name}</h1>
       <h1>ID : {id}</h1>
+
     </div>
   );
 }
@@ -183,22 +184,7 @@ type Link = {
 };
 
 const navLinks: Link[] = [
-  {
-    id: 1,
-    url: 'https://reactjs.org',
-    text: 'react docs',
-  },
-  {
-    id: 2,
-    url: 'https://reactrouter.com',
-    text: 'react router docs',
-  },
-  {
-    id: 3,
-    url: 'https://reacttraining.com',
-    // remove text property to see the error
-    text: 'react training',
-  },
+ 
 ];
 
 function Component() {

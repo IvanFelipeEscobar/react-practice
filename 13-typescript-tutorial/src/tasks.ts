@@ -8,14 +8,14 @@ type Task = {
   isCompleted: boolean;
 };
 
-const tasks: Task[] = loadTasks();
+const tasks: Task[] = JSON.parse(localStorage.getItem('tasks') as string) || []
 
 tasks.forEach(renderTask);
 
-function loadTasks(): Task[] {
-  const storedTasks = localStorage.getItem('tasks');
-  return storedTasks ? JSON.parse(storedTasks) : [];
-}
+// function loadTasks(): Task[] {
+//   const storedTasks = localStorage.getItem('tasks');
+//   return storedTasks ? JSON.parse(storedTasks) : [];
+// }
 
 taskForm?.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -26,7 +26,8 @@ taskForm?.addEventListener('submit', (event) => {
       isCompleted: false,
     };
     // add task to list
-    addTask(task);
+  tasks.push(task)
+  // addTask(task)
     // render tasks
     renderTask(task);
     // update local storage
@@ -37,10 +38,9 @@ taskForm?.addEventListener('submit', (event) => {
   alert('Please enter a task description');
 });
 
-function addTask(task: Task): void {
-  tasks.push(task);
-  console.log(tasks);
-}
+// function addTask(task: Task): void {
+//   console.log(tasks);
+// }
 
 function renderTask(task: Task): void {
   const taskElement = document.createElement('li');

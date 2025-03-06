@@ -1,7 +1,6 @@
 'use server';
 import { readFile, writeFile } from 'fs/promises';
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 
 type User = {
   id: string;
@@ -10,9 +9,6 @@ type User = {
 };
 
 export const createUser = async (prevState: any, formData: FormData) => {
-  'use server';
-  // console.log(prevState);
-
   await new Promise((resolve) => setTimeout(resolve, 3000));
   const firstName = formData.get('firstName') as string;
   const lastName = formData.get('lastName') as string;
@@ -49,9 +45,8 @@ export const deleteUser = async (formData: FormData) => {
   await writeFile('users.json', JSON.stringify(updatedUsers));
   revalidatePath('/actions');
 };
-export const removeUser = async (id: string, formData: FormData) => {
-  const name = formData.get('name') as string;
-  // console.log(name);
+
+export const removeUser = async (id: string) => {
 
   const users = await fetchUsers();
   const updatedUsers = users.filter((user) => user.id !== id);
